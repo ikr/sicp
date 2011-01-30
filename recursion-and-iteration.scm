@@ -1,10 +1,10 @@
-(define (f-recursive n)
+(define (f-tree n)
     (if (< n 3)
         n
         (+
-            (f-recursive (- n 1))
-            (* 2 (f-recursive (- n 2)))
-            (* 3 (f-recursive (- n 3))))))
+            (f-tree (- n 1))
+            (* 2 (f-tree (- n 2)))
+            (* 3 (f-tree (- n 3))))))
 
 (define (f-0 f-1 f-2 f-3)
     (+
