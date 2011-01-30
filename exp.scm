@@ -9,8 +9,6 @@
 
 (define (even? n) (= (remainder n 2) 0))
 
-(define (square x) (* x x))
-
 (define (a-b-n a b n)
     (cond
         ((= n 0) a)
