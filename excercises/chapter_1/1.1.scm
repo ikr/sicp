@@ -1,3 +1,6 @@
+; Below is a sequence of expressions. What is the result printed by the interpreter in response to
+; each expression?
+
 10                      ; 10
 
 (+ 5 3 4)               ; 12
