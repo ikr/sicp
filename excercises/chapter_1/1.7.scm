@@ -8,7 +8,7 @@
 ; numbers?
 
 (define
-    (bad-good-enough? guess x)
+    (good-enough? guess x)
     (<
         (abs (- (* guess guess) x))
         0.001))
@@ -18,20 +18,41 @@
     (/ (+ guess (/ x guess)) 2))
 
 (define
-    (sqrt-iter good-enough? guess x)
+    (a-sqrt-iter guess x)
     (if (good-enough? guess x)
         guess
-        (sqrt-iter good-enough? (improve guess x) x)))
+        (a-sqrt-iter (improve guess x) x)))
 
 ; A: On a small number like that
 
-(sqrt-iter bad-good-enough? 1 0.000004)
+(a-sqrt-iter 1 0.000004)
 
 ; a-sqrt-iter returns 0.0312926134104966, which is over 10 times greater than the actual sqrt
 ; 0.002
 
 ; For a large number like that (uncomment to run):
 
-; (sqrt-iter bad-good-enough? 1 40000000000000.0)
+; (a-sqrt-iter 1 40000000000000.0)
 
-; a-sqrt-iter doesn't even terminate on my machine.
+; sqrt-iter doesn't even terminate on my machine. Here's a better good-enough? function:
+
+(define
+    (next-is-good-enough? guess x)
+    (<
+        (abs
+            (/
+                (- guess (improve guess x))
+                guess))
+        0.001))
+
+(define
+    (b-sqrt-iter guess x)
+    (if (next-is-good-enough? guess x)
+        (improve guess x)
+        (b-sqrt-iter (improve guess x) x)))
+
+(b-sqrt-iter 1 0.000004)            ; returns way more accurate result than a-sqrt-iter
+
+(b-sqrt-iter 1 40000000000000.0)    ; terminates (yay!) and the result is accurate too
+
+; mission accomploshed :)
