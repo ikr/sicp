@@ -56,3 +56,6 @@
 (b-sqrt-iter 1 40000000000000.0)    ; terminates (yay!) and the result is accurate too
 
 ; mission accomploshed :)
+
+; Q: Does this work better for small and large numbers?
+; A: Yes.
