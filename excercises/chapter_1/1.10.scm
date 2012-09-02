@@ -118,6 +118,8 @@
 (define (h n) (A 2 n))
 
 ; (h n) computes 2^...^2 (n times), like 2^(2^(2^2)) for (h 4)
+; or recursively h(1) = 2; h(n) = 2^h(n-1); or, in terms of g(n) defined above,
+; h(n) = g^(n - 1)(2)
 
 (h 1)   ; 2
 (h 2)   ; 4
