@@ -92,4 +92,34 @@
 
 ; Q: Consider the following procedures, where A is the procedure defined above. Give concise
 ; mathematical definitions for the functions computed by the procedures f, g, and h for positive
-; integer values of n. For example, (k n) computes 5n^2.
+; integer values of n. For example,
+
+(define (k n) (* 5 n n))
+
+; (k n) computes 5n^2.
+
+(k 1)   ; 5
+(k 2)   ; 20
+
+(define (f n) (A 0 n))
+
+; (f n) computes 2n
+
+(f 10)  ; 20
+(f 55)  ; 110
+
+(define (g n) (A 1 n))
+
+; (g n) computes 2^n
+
+(g 5)   ; 32
+(g 10)  ; 1024
+
+(define (h n) (A 2 n))
+
+; (h n) computes 2^...^2 (n times), like 2^(2^(2^2)) for (h 4)
+
+(h 1)   ; 2
+(h 2)   ; 4
+(h 3)   ; 16
+(h 4)   ; 65536
