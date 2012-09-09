@@ -1,0 +1,45 @@
+Q: Prove that Fib(n) is the closest integer to φ^n/√5, where φ = (1 + √5)/2.
+
+Hint: Let ψ = (1 − √5)/2. Use induction and the definition of the Fibonacci numbers to prove
+that Fib(n) = (φ^n − ψ^n)/√5.
+
+A:
+
+Let Fib(n) = Fn
+
+1. Proof for Fn = (φ^n − ψ^n)/√5, by induction.
+
+a) Base:
+
+F0 = (1 - 1)/√5 = 0                                         ✓
+F1 = (φ - ψ)/√5 = ((1 + √5 - 1 + √5)/2)/√5 = 2√5/2/√5 = 1   ✓
+
+b) n => n + 1
+
+Fn+1 = Fn + Fn-1 = (φ^n - ψ^n + φ^n-1 - ψ^n-1)/√5 = (φ^n-1(φ + 1) - ψ^n-1(ψ + 1))/√5
+
+then, as both φ and ψ are the roots of x² = x + 1 equation,
+
+Fn+1 = (φ^n-1 * φ² - ψ^n-1 * ψ²)/√5 = (φ^n-1+2 - ψ^n-1+2)/√5 = (φ^n+1 - ψ^n+1)/√5   ✓
+
+2. Fn being the closest integer to φ^n/√5 means that
+
+|Fn - φ^n/√5| ≤ 1/2
+
+Using the Fn formula proven above, we have to prove now that
+
+|(φ^n − ψ^n)/√5 - φ^n/√5| ≤ 1/2
+
+|(φ^n − ψ^n)/√5 - φ^n/√5| ≤ 1/2
+
+|ψ^n/√5| ≤ 1/2
+
+Let's proove that inductively
+
+a) Base: n = 0
+
+Indeed, |1/√5| ≤ 1/2
+
+b) n => n + 1
+
+|ψ^n+1/√5| = |ψ * ψ^n/√5| ≤ |ψ/2| = |(1 − √5)/4| ~ 0.31 ≤ 1/2   ✓
