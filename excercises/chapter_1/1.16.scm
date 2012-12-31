@@ -17,3 +17,17 @@
 ; by the value of a at the end of the process. In general, the technique of defining an invariant
 ; quantity that remains unchanged from state to state is a powerful way to think about the design
 ; of iterative algorithms.)
+
+; A:
+;
+; (b²)^(n/2) = b^(n/2) * b^(n/2)
+
+(define (exp-iter b n a)
+    (cond
+        ((= n 0) a)
+        ((even? n) (exp-iter (square b) (/ n 2) a))
+        (else (exp-iter b (- n 1) (* a b)))))
+
+(define (exp b n) (exp-iter b n 1))
+
+(exp 2 10)
