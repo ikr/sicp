@@ -3,14 +3,25 @@
 ; repeated addition. The following multiplication procedure (in which it is assumed that our
 ; language can only add, not multiply) is analogous to the expt procedure:
 
-(define (* a b)
-    (if (= b 0)
-        0
-        (+ a (* a (- b 1)))))
-
-(* 3 4)
+; (define (* a b)
+;     (if (= b 0)
+;         0
+;         (+ a (* a (- b 1)))))
 
 ; This algorithm takes a number of steps that is linear in b. Now suppose we include, together with
 ; addition, operations double, which doubles an integer, and halve, which divides an (even) integer
 ; by 2. Using these, design a multiplication procedure analogous to fast-expt that uses a
 ; logarithmic number of steps.
+
+; A:
+
+(define (double x) (+ x x))
+(define (halve x) (/ x 2))
+
+(define (fast-mul a b)
+    (cond
+        ((= b 0) 0)
+        ((even? b) (fast-mul (double a) (halve b)))
+        (else (+ (fast-mul a (- b 1)) a))))
+
+(fast-mul 3 4)
