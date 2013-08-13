@@ -42,3 +42,20 @@
     (remainder
       (remainder 40 (remainder 206 40))
       (remainder (remainder 206 40) (remainder 40 (remainder 206 40))))))
+
+(if
+  (=
+    (remainder
+      (remainder 40 (remainder 206 40))
+      (remainder (remainder 206 40) (remainder 40 (remainder 206 40)))) ; 7 calls
+    0)
+  (remainder (remainder 206 40) (remainder 40 (remainder 206 40)))
+  (gcd
+    (remainder
+      (remainder 40 (remainder 206 40))
+      (remainder (remainder 206 40) (remainder 40 (remainder 206 40))))
+    (remainder
+      (remainder (remainder 206 40) (remainder 40 (remainder 206 40)))
+      (remainder
+        (remainder 40 (remainder 206 40))
+        (remainder (remainder 206 40) (remainder 40 (remainder 206 40)))))))
