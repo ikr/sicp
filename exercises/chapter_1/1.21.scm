@@ -8,8 +8,10 @@
 
 (define (divides? a b) (= (remainder b a) 0))
 
-; Use the smallest-divisor procedure to find the smallest divisor of each of the following numbers:
-; 199, 1999, 19999.
+; Q: Use the smallest-divisor procedure to find the smallest divisor of each of the following
+; numbers: 199, 1999, 19999.
+
+; A:
 
 (smallest-divisor 199) ; 199
 
