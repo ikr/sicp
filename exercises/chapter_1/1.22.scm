@@ -38,4 +38,29 @@
 ; 1,000,000 support the sqrt(n) prediction? Is your result compatible with the notion that programs
 ; on your machine run in time proportional to the number of steps required for the computation?
 
-; A:
+; A: To make the problem interesting for the modern processors' clock speed, we'll scale up the
+; problem by a factor of 10^8
+
+(define (search-for-primes current upper-bound)
+  (timed-prime-test current)
+  (if (>= current upper-bound)
+    0
+    (search-for-primes (+ current 2) upper-bound)))
+
+(search-for-primes 100000000001 100000000059)
+; 100000000003 *** .58
+; 100000000019 *** .570000000000000
+; 100000000057 *** .5800000000000001
+
+(search-for-primes 1000000000001 1000000000065)
+; 1000000000039 *** 1.8200000000000003
+; 1000000000061 *** 1.83
+; 1000000000063 *** 1.8200000000000003
+
+
+(search-for-primes 10000000000001 10000000000101)
+; 10000000000037 *** 5.7
+; 10000000000051 *** 5.690000000000001
+; 10000000000099 *** 5.73
+
+; Yep, the time grows exactlt as it's predicted by the complexity analysis.
