@@ -55,4 +55,4 @@
 (timed-prime-test 100000000000067)
 (timed-prime-test 100000000000097) ; was: ~18.1 now: ~11.35
 
-; A: No, the tests don't quite run twice as fast.
+; A: No, the tests don't quite run twice as fast. ???
