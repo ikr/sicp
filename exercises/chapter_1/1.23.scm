@@ -55,4 +55,9 @@
 (timed-prime-test 100000000000067)
 (timed-prime-test 100000000000097) ; was: ~18.1 now: ~11.35
 
-; A: No, the tests don't quite run twice as fast. ???
+; A: No, the tests don't quite run twice as fast. Even thogh we halved the number of iterations in
+; find-divisor, we've replaced a trivial, and probably fast, integer increment with a user function
+; call -- "next"; therefore making each iteration a bit slower. Also, find-divisor is not on the top
+; of the call stack, and the time required to get to it in the stack stayed unchanged. However, as
+; the numbers grow, the ratio between the times in 1.22's and this implementation should
+; asymptotically approach to 2.0.
