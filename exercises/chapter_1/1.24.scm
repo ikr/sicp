@@ -40,20 +40,18 @@
 
 ;---------------------------------------------------------------------------------------------------
 
-(fermat-test 100000000003)
+(timed-prime-test 1009)
+(timed-prime-test 1013)
+(timed-prime-test 1019)
 
-(timed-prime-test 100000000003)
-(timed-prime-test 100000000019)
-(timed-prime-test 100000000057) ;
+(timed-prime-test 10007)
+(timed-prime-test 10009)
+(timed-prime-test 10037)
 
-(timed-prime-test 1000000000039)
-(timed-prime-test 1000000000061)
-(timed-prime-test 1000000000063) ;
+(timed-prime-test 100003)
+(timed-prime-test 100019)
+(timed-prime-test 100043)
 
-(timed-prime-test 10000000000037)
-(timed-prime-test 10000000000051)
-(timed-prime-test 10000000000099) ;
-
-(timed-prime-test 100000000000031)
-(timed-prime-test 100000000000067)
-(timed-prime-test 100000000000097) ;
+(timed-prime-test 1000003)
+(timed-prime-test 1000033)
+(timed-prime-test 1000037)
