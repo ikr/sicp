@@ -67,7 +67,7 @@
 ; 100000000000067 *** 18.25
 ; 100000000000097 *** 18.120000000000005
 
-; Yep, the time grows exactlt as it's predicted by the complexity analysis.
+; Yep, the time grows exactly as it's predicted by the complexity analysis.
 
 ;;--------------------------------------------------------------------------------------------------
 ;; And, the original numbers' data...
