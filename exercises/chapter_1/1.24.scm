@@ -4,14 +4,11 @@
 ; needed to test primes near 1000? Do your data bear this out? Can you explain any discrepancy you
 ; find?
 
-(define (fast-exp base exp)
+(define (expmod base exp m)
   (cond
     ((= exp 0) 1)
-    ((even? exp) (square (fast-exp base (/ exp 2))))
-    (else (* base (fast-exp base (- exp 1))))))
-
-(define (expmod base exp m)
-  (remainder (fast-exp base exp) m))
+    ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
+    (else (remainder (* base (expmod base (- exp 1) m)) m))))
 
 (define (fermat-test n)
   (define (try-it a) (= (expmod a n n) a))
@@ -25,33 +22,25 @@
 
 ;---------------------------------------------------------------------------------------------------
 
-(define (timed-prime-test n)
-  (newline)
-  (display n)
-  (start-prime-test n (runtime)))
+(define (measure n)
+  (write n)
+  (write-char #\space)
+  (with-timings
+    (lambda () (fast-prime? n 100000))
+    report))
 
-(define (start-prime-test n start-time)
-  (if (fast-prime? n 2)
-    (report-prime (- (runtime) start-time))))
+(define (report run-time gc-time real-time)
+  (write (internal-time/ticks->seconds real-time))
+  (newline))
 
-(define (report-prime elapsed-time)
-  (display " *** ")
-  (display elapsed-time))
+(measure 1019)            ;; 3.669s
+(measure 10037)           ;; 4.246s
+(measure 100043)          ;; 4.980s
+(measure 1000037)         ;; 5.678s
+(measure 10000019)        ;; 6.686s
+(measure 100000037)       ;; 7.858s
 
-;---------------------------------------------------------------------------------------------------
-
-(timed-prime-test 1009)
-(timed-prime-test 1013)
-(timed-prime-test 1019)
-
-(timed-prime-test 10007)
-(timed-prime-test 10009)
-(timed-prime-test 10037)
-
-(timed-prime-test 100003)
-(timed-prime-test 100019)
-(timed-prime-test 100043)
-
-(timed-prime-test 1000003)
-(timed-prime-test 1000033)
-(timed-prime-test 1000037)
+(measure 100000000057)    ;; 12.799s
+(measure 1000000000063)   ;; 13.497s
+(measure 10000000000099)  ;; 14.198s
+(measure 100000000000097) ;; 15.139s
