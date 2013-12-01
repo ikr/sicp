@@ -44,3 +44,5 @@
 (measure 1000000000063)   ;; 13.497s
 (measure 10000000000099)  ;; 14.198s
 (measure 100000000000097) ;; 15.139s
+
+;; A: Yep, that looks pretty much like a logarithmic growth to me.
