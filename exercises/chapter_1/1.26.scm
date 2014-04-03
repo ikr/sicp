@@ -18,4 +18,17 @@
 ;; “I don’t see what difference that could make,” says Louis. “I do.” says Eva. “By writing the
 ;; procedure like that, you have transformed the Θ(log n) process into a Θ(n) process.” Explain.
 
-;; A:
+;; A: Scheme interpreter follows the applicative order evaluation strategy; meaning that, when
+;; evaluating (* A B), it completely evaluates both A and B first. Thus, instead of just halving the
+;; recursive call argument on each iteration: 32 - 16 - 8 - 4 - 2, we're yielding a binary tree of
+;; recursive computation:
+;;
+;;        32
+;;       /  \
+;;     16    16
+;;    /  \  /  \
+;;   8    88    8
+;;  /............\
+;;
+;; The number of vertices in that computation tree has the same order of growth as the recursion
+;; argument itself, meaning we've got a Θ(n) process.
