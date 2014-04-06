@@ -9,3 +9,33 @@
 ;; test is less than the chance that cosmic radiation will cause the computer to make an error in
 ;; carrying out a “correct” algorithm. Considering an algorithm to be inadequate for the first
 ;; reason but not for the second illustrates the difference between mathematics and engineering.
+
+;; A: Indeed, the Carmichael numbers fool the Fermat test for all values of a < n
+
+(define (expmod base exp m)
+  (cond
+    ((= exp 0) 1)
+    ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
+    (else (remainder (* base (expmod base (- exp 1) m)) m))))
+
+(define (complete-fermat-test a n)
+  (if (= a n)
+      1
+      (if (= a (expmod a n n))
+          (complete-fermat-test (+ a 1) n)
+          0)))
+
+;; Carmichael numbers
+(complete-fermat-test 0 561)  ;; 1, even though 561 = 3 * 11 * 17 -- not a prime
+(complete-fermat-test 0 1105) ;; 1
+(complete-fermat-test 0 1729) ;; 1
+(complete-fermat-test 0 2465) ;; 1
+(complete-fermat-test 0 2821) ;; 1
+(complete-fermat-test 0 6601) ;; 1
+
+;; Actual primes
+(complete-fermat-test 0 3571) ;; 1
+(complete-fermat-test 0 827)  ;; 1
+
+;; Not a prime
+(complete-fermat-test 0 6241) ;; 0
