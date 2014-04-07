@@ -13,3 +13,17 @@
 ;; use this to implement the Miller-Rabin test with a procedure analogous to fermat-test. Check your
 ;; procedure by testing various known primes and non-primes. Hint: One convenient way to make expmod
 ;; signal is to have it return 0.
+
+;; A:
+
+(define (expmod base exp m)
+  (cond
+    ((= exp 0) 1)
+    ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
+    (else (remainder (* base (expmod base (- exp 1) m)) m))))
+
+(define (nontrivial-sqrt? n x)
+  (and
+   (not (= x 1))
+   (not (= x (- n 1)))
+   (= (remainder (square x) n) 1)))
