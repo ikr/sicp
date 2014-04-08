@@ -19,11 +19,32 @@
 (define (expmod base exp m)
   (cond
     ((= exp 0) 1)
-    ((even? exp) (remainder (square (expmod base (/ exp 2) m)) m))
+    ((even? exp)
+     (remainder
+      (square (expmod base (/ exp 2) m))
+      m))
     (else (remainder (* base (expmod base (- exp 1) m)) m))))
 
-(define (nontrivial-sqrt? n x)
-  (and
-   (not (= x 1))
-   (not (= x (- n 1)))
-   (= (remainder (square x) n) 1)))
+(define (miller-rabin-test n)
+  (define (try-it a) (= (expmod a (- n 1) n) 1))
+  (try-it (+ (random (- n 1)) 1)))
+
+;; Primes
+;;
+(miller-rabin-test 3407)
+(miller-rabin-test 13)
+(miller-rabin-test 16127)
+
+;; Non-primes
+;;
+(miller-rabin-test 29029)
+(miller-rabin-test 162)
+
+;; Carmichael numbers
+;;
+(miller-rabin-test 561)
+(miller-rabin-test 1105)
+(miller-rabin-test 1729)
+(miller-rabin-test 2465)
+(miller-rabin-test 2821)
+(miller-rabin-test 6601)
