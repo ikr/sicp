@@ -16,13 +16,16 @@
 
 ;; A:
 
+(define (squaremod x m) (remainder (square x) m))
+
 (define (expmod base exp m)
   (cond
     ((= exp 0) 1)
     ((even? exp)
-     (remainder
-      (square (expmod base (/ exp 2) m))
-      m))
+     (let ((e (expmod base (/ exp 2) m)))
+       (if (and (> e 1) (< e (- m 1)) (= (squaremod e m) 1))
+           0
+           (squaremod e m))))
     (else (remainder (* base (expmod base (- exp 1) m)) m))))
 
 (define (miller-rabin-test n)
@@ -34,11 +37,13 @@
 (miller-rabin-test 3407)
 (miller-rabin-test 13)
 (miller-rabin-test 16127)
+(miller-rabin-test 199933)
 
 ;; Non-primes
 ;;
 (miller-rabin-test 29029)
 (miller-rabin-test 162)
+(miller-rabin-test 98803)
 
 ;; Carmichael numbers
 ;;
@@ -48,3 +53,5 @@
 (miller-rabin-test 2465)
 (miller-rabin-test 2821)
 (miller-rabin-test 6601)
+
+;; Yep, shows much better results than the original fermat-test
