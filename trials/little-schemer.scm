@@ -20,4 +20,14 @@
      (else
       (cons (car lat) (multirember a (cdr lat)))))))
 
-(multirember 'the '(the ride the lightning the the the))
+(define rember*
+  (lambda (a l)
+    (cond
+     ((null? l) '())
+     ((atom? (car l))
+      (cond
+       ((eq? a (car l)) (rember* a (cdr l)))
+       (else (cons (car l) (rember* a (cdr l))))))
+     (else (cons (rember* a (car l)) (rember* a (cdr l)))))))
+
+(rember* 'the '(the ((the) master) ((ride the) lightning the) (the the)))
