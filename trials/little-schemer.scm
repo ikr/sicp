@@ -31,3 +31,10 @@
      (else (cons (rember* a (car l)) (rember* a (cdr l)))))))
 
 (rember* 'the '(the ((the) master) ((ride the) lightning the) (the the)))
+
+(define eqan?
+  (lambda (a1 a2)
+    (cond
+     ((and (number? a1) (number? a2)) (= a1 a2))
+     ((or (number? a1) (number? a2)) #f)
+     (else (eq? a1 a2)))))
